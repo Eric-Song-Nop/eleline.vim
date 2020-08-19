@@ -200,7 +200,8 @@ function! s:StatusLine() abort
   let l:curfname = s:def('ElelineCurFname')
   " let l:branch = s:def('ElelineGitBranch')
   let l:branch = "%{get(b:,'coc_git_status','')}"
-  let l:status = s:def('ElelineGitStatus')
+  let l:status = "%{get(g:,'coc_git_status','')}"
+  " let l:status = s:def('ElelineGitStatus')
   let l:error = s:def('ElelineError')
   let l:warning = s:def('ElelineWarning')
   let l:tags = '%{exists("b:gutentags_files") ? gutentags#statusline() : ""} '
