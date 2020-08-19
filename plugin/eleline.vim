@@ -333,11 +333,26 @@ function! s:SetStatusLine(...) abort
   call s:hi_statusline()
 endfunction
 
-if exists('*timer_start')
-  call timer_start(100, function('s:SetStatusLine'))
-else
-  call s:SetStatusLine()
-endif
+function! s:MyStatusLine()
+  if has('gui_running')
+      let l:buf_num = "%1* %n ❖ %{winnr()} %*"
+  else
+      let l:buf_num = "%1* %{S_buf_num()} ❖ %{winnr()} %*"
+  endif
+  let l:branch = "%{get(b:,'coc_git_status','')}"
+  let l:gutter = '%{S_gitgutter()}'
+
+  return l:buf_num.l:paste.l:tot.'%<'.l:fs.l:fp.l:branch.l:gutter.l:ale_e.l:ale_w.
+        \ '%='.l:tags.l:m_r_f.l:pos.l:enc.l:ff.l:pct
+endfunction
+
+
+"if exists('*timer_start')
+"  call timer_start(100, function('s:SetStatusLine'))
+"else
+  "call s:SetStatusLine()
+  call s:MyStatusLine()
+"endif
 
 augroup eleline
   autocmd!
