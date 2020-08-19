@@ -351,7 +351,7 @@ endfunction
 "  call timer_start(100, function('s:SetStatusLine'))
 "else
   "call s:SetStatusLine()
-  call s:MyStatusLine()
+  call s:SetStatusLine()
 "endif
 
 augroup eleline
