@@ -201,6 +201,7 @@ function! s:StatusLine() abort
   " let l:branch = s:def('ElelineGitBranch')
   let l:branch = "%{get(g:,'coc_git_status','')}"
   let l:status = "%{get(b:,'coc_git_status','')}"
+  let l:blame = "%{get(b:,'coc_git_blame','')}"
   " let l:status = s:def('ElelineGitStatus')
   let l:error = s:def('ElelineError')
   let l:warning = s:def('ElelineWarning')
@@ -209,7 +210,7 @@ function! s:StatusLine() abort
   let l:coc = '%{ElelineCoc()}'
   let l:vista = '%#ElelineVista#%{ElelineVista()}%*'
   let l:prefix = l:bufnr_winnr.l:paste
-  let l:common = l:curfname.l:branch.l:status.l:error.l:warning.l:tags.l:lcn.l:coc.l:vista
+  let l:common = l:curfname.l:branch.l:status.l:blame.l:error.l:warning.l:tags.l:lcn.l:coc.l:vista
   if get(g:, 'eleline_slim', 0)
     return l:prefix.'%<'.l:common
   endif
